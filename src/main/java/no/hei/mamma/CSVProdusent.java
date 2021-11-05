@@ -1,9 +1,11 @@
+package no.hei.mamma;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import static java.util.Objects.requireNonNull;
 
-public class CSVProducer {
+public class CSVProdusent {
 
     public static String oversettJsonMeldingTilCSV(final String melding) {
         JSONObject jo = null;
