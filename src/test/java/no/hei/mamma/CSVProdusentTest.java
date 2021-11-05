@@ -1,10 +1,12 @@
+package no.hei.mamma;
+
 import org.json.JSONObject;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 
-public class CSVProducerTest {
+public class CSVProdusentTest {
 
     @Test
     public void skal_oversette_json_til_csv() throws Exception {
@@ -14,7 +16,7 @@ public class CSVProducerTest {
         jo.put("lon", "2.1234");
         jo.put("db", "60");
 
-        String csv = CSVProducer.oversettTilCSV(jo, 123456789L);
+        String csv = CSVProdusent.oversettTilCSV(jo, 123456789L);
         assertEquals("123456789;A1;60;2.1234;1.1234", csv);
     }
 
@@ -26,7 +28,7 @@ public class CSVProducerTest {
         jo.put("lon", "2.1234");
         jo.put("db", "60");
 
-        String csv = CSVProducer.oversettTilCSV(jo, 123456789L);
+        String csv = CSVProdusent.oversettTilCSV(jo, 123456789L);
         assertEquals(5, csv.split(";").length);
     }
 
@@ -36,7 +38,7 @@ public class CSVProducerTest {
         jo.put("id", "2");
         jo.put("db", "60");
 
-        String csv = CSVProducer.oversettTilCSV(jo, 123456789L);
+        String csv = CSVProdusent.oversettTilCSV(jo, 123456789L);
         assertEquals("123456789;A2;60;;", csv);
     }
 
@@ -45,14 +47,14 @@ public class CSVProducerTest {
         JSONObject jo = new JSONObject();
         jo.put("id", "99");
 
-        String csv = CSVProducer.oversettTilCSV(jo, 123456789L);
+        String csv = CSVProdusent.oversettTilCSV(jo, 123456789L);
         assertEquals("A99", csv.split(";")[1]);
     }
 
     @Test(expected = NullPointerException.class)
     public void skal_gi_feil_hvis_timestamp_mangler() throws Exception {
         JSONObject jo = new JSONObject();
-        CSVProducer.oversettTilCSV(jo, null);
+        CSVProdusent.oversettTilCSV(jo, null);
     }
 
 
