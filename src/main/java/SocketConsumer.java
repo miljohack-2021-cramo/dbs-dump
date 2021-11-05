@@ -30,24 +30,7 @@ public class SocketConsumer {
     private Emitter.Listener onNewMessage = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
-            JSONObject jo = null;
-            try {
-                jo = new JSONObject(args[0].toString().trim());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            String lon = jo.optString("lon");
-            String lat = jo.optString("lat");
-            String db = jo.optString("db");
-            String id = jo.optString("id");
-            String tid = System.currentTimeMillis() + "";
-            String linje = String.join(";",
-                    tid,
-                    "A" + id,
-                    db,
-                    lon,
-                    lat
-            );
+            String linje = CSVProducer.oversettJsonMeldingTilCSV(args[0].toString());
             try {
                 append(linje);
             } catch (IOException e) {
